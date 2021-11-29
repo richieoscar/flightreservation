@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Complete Flight Reservation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+    <div class="row card-header bg-black-50 ">
+        <div class="col ">
+            <h2 class="h1 text-success text-capitalize  p-2 mt-2">Complete Flight Reservation</h2>
+        </div>
+        <div class="col ">
+            <h2 class="h4 text-secondary text-end p-2" th:text="${username}"></h2>
+        </div>
+    </div>
+    <h1 class="h3 text-warning pt-3">Flight Information</h1>
+
+    <div class="row">
+        <div class="col-md-4 pt-3">
+
+            <p class="fw-bold">Airline </p><input class="form-control" type="text"
+                                                  th:value="${flight.operatingAirlines}" readonly/>
+            <p class="fw-bold pt-2">Departure City </p> <input class="form-control" type="text"
+                                                               th:value="${flight.departureCity}" readonly>
+            <p class="fw-bold pt-2">Destination </p> <input class="form-control" type="text"
+                                                            th:value="${flight.arrivalCity}" readonly>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h1 class="h3 text-warning pt-5">Passenger Information</h1>
+
+            <form class="needs-validated" action="/confirmReservation" method="post"/>
+
+            <label class="form-label" for="passengerFirstName">First Name</label>
+            <input class="form-control" id="passengerFirstName" name="passengerFirstName" type="text" required/>
+
+            <label class="form-label" for="passengerLastName">Last Name</label>
+            <input class="form-control" id="passengerLastName" name="passengerLastName" type="text" required/>
+
+            <label class="form-label" for="passengerPhone">Phone Number</label>
+            <input class="form-control" id="passengerPhone" name="passengerPhone" type="text" required/>
+
+            <label class="form-label" for="passengerEmail">Email</label>
+            <input class="form-control" id="passengerEmail" name="passengerEmail" type="email" required/>
+
+            <h1 class="h3 text-warning pt-5">Card Information</h1>
+
+            <label class="form-label" for="cardName">Card Name</label>
+            <input class="form-control" id="cardName" name="cardName" type="text" required/>
+
+            <label class="form-label" for="cardNumber">Card Number</label>
+            <input class="form-control" id="cardNumber" name="cardNumber" type="tel" required/>
+
+            <label class="form-label" for="cardExp">Expiry Date</label>
+            <input class="form-control" id="cardExp" name="cardExp" type="date" required/>
+
+            <label class="form-label" for="cardSecCode">3 Digit Code</label>
+            <input class="form-control" id="cardSecCode" name="cardSecCode" type="tel" required/>
+            <input class="form-control" id="flightId" name="flightId" th:value="${flight.id}" type="hidden" />
+
+            <input type="submit" class="btn btn-success mt-3 mb-3" id="confirm" value="Confirm Reservation">
+
+            </form>
+
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>
