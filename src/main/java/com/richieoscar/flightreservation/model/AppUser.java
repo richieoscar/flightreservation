@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class User extends EntityId {
+public class AppUser extends EntityId {
 
     private String firstName;
     private String lastName;

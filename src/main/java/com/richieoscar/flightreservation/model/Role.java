@@ -8,9 +8,12 @@ import java.util.Set;
 
 @Entity
 public class Role extends EntityId implements GrantedAuthority {
+
+
     private String name;
+
     @ManyToMany(mappedBy="roles")
-    private  Set<User> users;
+    private  Set<AppUser> appUsers;
 
     public String getName() {
         return name;
@@ -20,12 +23,12 @@ public class Role extends EntityId implements GrantedAuthority {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public Set<AppUser> getUsers() {
+        return appUsers;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setUsers(Set<AppUser> appUsers) {
+        this.appUsers = appUsers;
     }
 
 

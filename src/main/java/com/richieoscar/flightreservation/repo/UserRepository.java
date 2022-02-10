@@ -1,11 +1,11 @@
 package com.richieoscar.flightreservation.repo;
 
-import com.richieoscar.flightreservation.model.User;
+import com.richieoscar.flightreservation.model.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<AppUser, Long> {
 
-    User findByEmail(String email);
+    AppUser findByEmail(String email);
 }

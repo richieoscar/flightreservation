@@ -1,6 +1,7 @@
 package com.richieoscar.flightreservation.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.sql.Timestamp;
 import java.util.Date;
 @Entity

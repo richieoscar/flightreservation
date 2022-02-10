@@ -1,11 +1,10 @@
 package com.richieoscar.flightreservation;
 
-import com.richieoscar.flightreservation.model.User;
+import com.richieoscar.flightreservation.model.AppUser;
 import com.richieoscar.flightreservation.util.Validate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.Assert;
 
 @SpringBootTest
 class FlightreservationApplicationTests {
@@ -14,13 +13,13 @@ class FlightreservationApplicationTests {
 
     @Test
     void validateUSerData() {
-        User user = new User();
-        user.setFirstName("Oscar");
-        user.setLastName("Anyiam");
-        user.setEmail("oscaranyiam@gmail.com");
-        user.setPassword("passwordone");
+        AppUser appUser = new AppUser();
+        appUser.setFirstName("Oscar");
+        appUser.setLastName("Anyiam");
+        appUser.setEmail("oscaranyiam@gmail.com");
+        appUser.setPassword("passwordone");
 
-        Assertions.assertTrue(Validate.validateUserData(user));
+        Assertions.assertTrue(Validate.validateUserData(appUser));
 
     }
 

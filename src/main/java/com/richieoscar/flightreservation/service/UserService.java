@@ -1,23 +1,22 @@
 package com.richieoscar.flightreservation.service;
 
-import com.richieoscar.flightreservation.model.User;
-import org.apache.catalina.LifecycleState;
+import com.richieoscar.flightreservation.model.AppUser;
 
 import java.util.List;
 
 public interface UserService {
 
-    User registerUser(User user);
+    AppUser registerUser(AppUser appUser);
 
-    void deleteUser(User user);
+    void deleteUser(AppUser appUser);
 
     void deleteUserById(Long id);
 
-    User updateUser(Long Id);
+    AppUser updateUser(Long Id);
 
     boolean verifyUser(Long id);
 
-    User findUserByEmail(String email);
+    AppUser findUserByEmail(String email);
 
-    List<User> getUsers();
+    List<AppUser> getUsers();
 }

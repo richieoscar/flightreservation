@@ -40,6 +40,8 @@ public class FlightController {
         return "addFlights";
     }
 
+
+
     private void logInfo(String info){
         LOGGER.info(info);
     }

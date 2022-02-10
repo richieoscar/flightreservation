@@ -15,4 +15,7 @@ public interface FlightService {
     
     Flight findFlight(Long id);
 
+    List<Flight> getAllFlight();
+
+
 }

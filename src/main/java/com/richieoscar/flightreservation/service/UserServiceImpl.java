@@ -1,6 +1,6 @@
 package com.richieoscar.flightreservation.service;
 
-import com.richieoscar.flightreservation.model.User;
+import com.richieoscar.flightreservation.model.AppUser;
 import com.richieoscar.flightreservation.repo.UserRepository;
 import com.richieoscar.flightreservation.util.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,24 +17,24 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User registerUser(User user) {
-        boolean valid = Validate.validateUserData(user);
+    public AppUser registerUser(AppUser appUser) {
+        boolean valid = Validate.validateUserData(appUser);
         if(valid){
-            return  repository.save(user);
+            return  repository.save(appUser);
         }
         else throw new IllegalStateException("User credentials not valid");
 
     }
 
     @Override
-    public void deleteUser(User user) {
-        Optional<User> optionalUser = repository.findById(user.getId());
+    public void deleteUser(AppUser appUser) {
+        Optional<AppUser> optionalUser = repository.findById(appUser.getId());
         boolean isPresent = optionalUser.isPresent();
         if(isPresent){
             repository.delete(optionalUser.get());
         }
 
-        else throw new IllegalStateException("User with" +user.getId() +" does not exist");
+        else throw new IllegalStateException("User with" + appUser.getId() +" does not exist");
 
 
     }
@@ -45,8 +45,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(Long Id) {
-        Optional<User> userExist = repository.findById(Id);
+    public AppUser updateUser(Long Id) {
+        Optional<AppUser> userExist = repository.findById(Id);
         if(userExist.isPresent()){
             return  repository.save(userExist.get());
         }
@@ -61,14 +61,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByEmail(String email) {
+    public AppUser findUserByEmail(String email) {
         return repository.findByEmail(email);
 
     }
 
 
     @Override
-    public List<User> getUsers() {
+    public List<AppUser> getUsers() {
         return repository.findAll();
     }
 }

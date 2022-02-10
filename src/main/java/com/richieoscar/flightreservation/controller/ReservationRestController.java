@@ -1,11 +1,14 @@
 package com.richieoscar.flightreservation.controller;
 
 import com.richieoscar.flightreservation.dto.ReservationUpdateRequest;
+import com.richieoscar.flightreservation.model.Flight;
 import com.richieoscar.flightreservation.model.Reservation;
 import com.richieoscar.flightreservation.repo.ReservationRepository;
+import com.richieoscar.flightreservation.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -14,6 +17,9 @@ public class ReservationRestController {
 
     @Autowired
     ReservationRepository reservationRepository;
+
+    @Autowired
+    FlightService flightService;
 
     @GetMapping("/reservations/{reservationId}")
     public Reservation getReservation(@PathVariable(value = "reservationId") Long id){
@@ -32,5 +38,10 @@ public class ReservationRestController {
         reservation.setCheckedIn(request.getCheckedIn());
         reservation.setNumberOfBags(request.getNumberOfBags());
         return reservationRepository.save(reservation);
+    }
+
+    @GetMapping("/flights")
+    public List<Flight> getAllFlights(){
+        return flightService.getAllFlight();
     }
 }

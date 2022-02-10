@@ -45,6 +45,11 @@ public class FlightServiceImpl implements FlightService {
         } else throw new IllegalStateException("No Record found for flight with " + id);
     }
 
+    @Override
+    public List<Flight> getAllFlight() {
+        return flightRepository.findAll();
+    }
+
     private void logInfo(String info){
         LOGGER.info(info);
     }

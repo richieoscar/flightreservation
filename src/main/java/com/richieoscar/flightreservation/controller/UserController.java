@@ -1,6 +1,6 @@
 package com.richieoscar.flightreservation.controller;
 
-import com.richieoscar.flightreservation.model.User;
+import com.richieoscar.flightreservation.model.AppUser;
 import com.richieoscar.flightreservation.service.SecurityService;
 import com.richieoscar.flightreservation.service.UserService;
 import org.slf4j.Logger;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserController {
 
     @Autowired
-    private  UserService userservice;
+    private UserService userservice;
 
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
@@ -30,37 +30,35 @@ public class UserController {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
 
-
     @RequestMapping("/registration")
-    public String registerUser(){
+    public String registerUser() {
         return "registration";
     }
 
     @PostMapping("/register")
-    public  String registerUser(@ModelAttribute User user, Model model){
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            userservice.registerUser(user);
-        model.addAttribute("username", user.getFirstName());
+    public String registerUser(@ModelAttribute AppUser appUser, Model model) {
+        appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
+        userservice.registerUser(appUser);
+        model.addAttribute("username", appUser.getFirstName());
         return "login";
 
     }
 
     @RequestMapping("/showLogin")
-    public String showLoginPage(){
+    public String showLoginPage() {
         return "login";
     }
 
     @PostMapping("/login")
-    public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password,  Model model){
-            logInfo("loginUser()");
+    public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password, Model model) {
+        logInfo("loginUser()");
         boolean loginResponse = securityService.login(email, password);
 
-        if(loginResponse){
+        if (loginResponse) {
             model.addAttribute("username", email);
-            logInfo("LoginUSer retruns: "+email);
+            logInfo("LoginUSer retruns: " + email);
             return "dashboard";
-        }
-        else {
+        } else {
             model.addAttribute("error", "Invalid Details");
         }
 
@@ -68,10 +66,11 @@ public class UserController {
 
     }
 
-    private void logInfo(String info){
+    private void logInfo(String info) {
         LOGGER.info(info);
     }
-   private void logError(String error){
+
+    private void logError(String error) {
         LOGGER.error(error);
     }
 }
